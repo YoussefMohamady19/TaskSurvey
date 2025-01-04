@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background shape - stylized clipboard -->
+  <rect x="10" y="8" width="40" height="44" fill="#3b82f6" rx="4"/>
+  <rect x="20" y="4" width="20" height="8" fill="#2563eb" rx="2"/>
+  
+  <!-- Stylized checkmark -->
+  <path d="M20 28 L30 38 L40 18" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Company name -->
+  <text x="65" y="35" font-family="system-ui, -apple-system" font-size="24" font-weight="600" fill="#1e293b">
+    SurveyPro
+  </text>
+  
+  <!-- Tagline -->
+  <text x="65" y="48" font-family="system-ui, -apple-system" font-size="12" fill="#64748b">
+    Better insights, better decisions
+  </text>
+</svg>

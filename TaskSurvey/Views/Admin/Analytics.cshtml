@@ -1,0 +1,68 @@
+﻿@using TaskSurvey.ViewModel
+@{
+    Layout = "_Admin"; // Ensure it's using the Admin layout
+}
+@model List<AnalyticsViewModel>
+
+<div class="container">
+    <h2>Survey Analytics</h2>
+
+    <div class="row">
+        @foreach (var analysis in Model)
+        {
+            <div class="col-md-6">
+                <!-- Ensure each card occupies half the row (2 cards per row) -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>@analysis.Question.QuestionText</h5>
+                        <small>Total Responses: @analysis.TotalResponses</small>
+
+                    </div>
+                    <div class="card-body">
+                        @if (analysis.Question.QuestionType != "Text")
+                        {
+                            <!-- Bar chart for non-text questions -->
+                            <div class="chart-container">
+                                <canvas id="chart_@analysis.Question.QuestionId"></canvas>
+                            </div>
+                            <script>
+                                // Initialize Chart.js bar chart
+                                new Chart(document.getElementById('chart_@analysis.Question.QuestionId'), {
+                                    type: 'bar',
+                                    data: {
+                                        labels: [@Html.Raw(string.Join(",", analysis.AnswerDistribution.Keys.Select(k => $"'{k}'")))],
+                                        datasets: [{
+                                            label: 'Responses',
+                                            data: [@string.Join(",", analysis.AnswerDistribution.Values)]
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                                
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
+                        }
+                        else
+                        {
+                            <!-- Text answers display -->
+                            <div class="text-responses">
+                                <h6>Text Responses:</h6>
+                                @foreach (var response in analysis.Question.UserResponses)
+                                {
+                                    <div class="response-item">
+                                        <p> - @response.Answer</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

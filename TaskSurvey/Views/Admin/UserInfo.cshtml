@@ -1,0 +1,28 @@
+﻿@using TaskSurvey.ViewModel
+@{
+    Layout = "_Admin";  
+}
+@model List<UserViewModel>  
+
+<div class="container">
+    <h2>User Information</h2>
+
+    <div class="row">
+        @foreach (var user in Model)
+        {
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>@user.UserName</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>ID:</strong> @user.UserId</p>
+                        <div class="text-end">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
